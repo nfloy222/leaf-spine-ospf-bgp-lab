@@ -1,0 +1,45 @@
+# leaf1: show ip ospf neighbor
+Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
+10.0.0.1          1 Full/-          24.751s           30.310s 10.1.0.2        eth2:10.1.0.1                        0     0     0
+10.0.0.2          1 Full/-          29.769s           30.230s 10.1.0.14       eth3:10.1.0.13                       0     0     0
+
+# leaf1: show ip route
+Codes: K - kernel route, C - connected, L - local, S - static,
+       R - RIP, O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric, t - Table-Direct,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+IPv4 unicast VRF default:
+K>* 0.0.0.0/0 [0/0] via 192.168.121.1, eth0, weight 1, 00:05:32
+O>* 10.0.0.1/32 [110/10] via 10.1.0.2, eth2, weight 1, 00:05:12
+O>* 10.0.0.2/32 [110/10] via 10.1.0.14, eth3, weight 1, 00:05:12
+L * 10.0.0.3/32 is directly connected, lo, weight 1, 00:05:28
+C>* 10.0.0.3/32 is directly connected, lo, weight 1, 00:05:28
+O>* 10.0.0.4/32 [110/20] via 10.1.0.2, eth2, weight 1, 00:05:07
+  *                      via 10.1.0.14, eth3, weight 1, 00:05:07
+O>* 10.0.0.5/32 [110/20] via 10.1.0.2, eth2, weight 1, 00:05:12
+  *                      via 10.1.0.14, eth3, weight 1, 00:05:12
+C>* 10.1.0.0/30 is directly connected, eth2, weight 1, 00:05:28
+L>* 10.1.0.1/32 is directly connected, eth2, weight 1, 00:05:28
+O>* 10.1.0.4/30 [110/20] via 10.1.0.2, eth2, weight 1, 00:05:12
+O>* 10.1.0.8/30 [110/20] via 10.1.0.2, eth2, weight 1, 00:05:12
+C>* 10.1.0.12/30 is directly connected, eth3, weight 1, 00:05:28
+L>* 10.1.0.13/32 is directly connected, eth3, weight 1, 00:05:28
+O>* 10.1.0.16/30 [110/20] via 10.1.0.14, eth3, weight 1, 00:05:12
+O>* 10.1.0.20/30 [110/20] via 10.1.0.14, eth3, weight 1, 00:05:12
+C>* 172.16.0.0/24 is directly connected, eth1, weight 1, 00:05:28
+L>* 172.16.0.3/32 is directly connected, eth1, weight 1, 00:05:28
+O>* 172.16.1.0/24 [110/30] via 10.1.0.2, eth2, weight 1, 00:05:07
+  *                        via 10.1.0.14, eth3, weight 1, 00:05:07
+O>* 172.16.2.0/24 [110/30] via 10.1.0.2, eth2, weight 1, 00:05:12
+  *                        via 10.1.0.14, eth3, weight 1, 00:05:12
+C>* 192.168.121.0/24 is directly connected, eth0, weight 1, 00:05:32
+L>* 192.168.121.103/32 is directly connected, eth0, weight 1, 00:05:32
+
+# spine1: show ip ospf neighbor
+Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
+10.0.0.3          1 Full/-          8m03s             31.549s 10.1.0.1        eth1:10.1.0.2                        0     0     0
+10.0.0.4          1 Full/-          8m08s             31.583s 10.1.0.5        eth2:10.1.0.6                        0     0     0
+10.0.0.5          1 Full/-          8m08s             31.560s 10.1.0.9        eth3:10.1.0.10                       0     0     0
