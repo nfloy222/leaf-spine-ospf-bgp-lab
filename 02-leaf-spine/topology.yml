@@ -1,0 +1,6 @@
+---
+provider: clab
+defaults.device: frr
+module: [ ospf ]
+nodes: [ spine1, spine2, leaf1, leaf2, leaf3 ]
+links: [ leaf1, leaf2, leaf3, spine1-leaf1, spine1-leaf2, spine1-leaf3, spine2-leaf1, spine2-leaf2, spine2-leaf3 ]
