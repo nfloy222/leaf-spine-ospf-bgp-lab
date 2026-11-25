@@ -5,7 +5,7 @@ Network lab built with netlab, Containerlab, and FRRouting (FRR) to practice rou
 ## Status
 - [x] Phase 1: Two-node OSPF baseline (complete)
 - [x] Phase 2: Leaf-spine topology with OSPF (complete)
-- [ ] Phase 3: eBGP peering on top of the OSPF underlay
+- [x] Phase 3: Leaf-spine with eBGP, one AS per router (complete)
 - [ ] Phase 4: Link and node failure testing
 
 ## Phase 1: Two-node OSPF baseline
@@ -24,6 +24,16 @@ Five FRR routers: 2 spines and 3 leaves. Every leaf connects to both spines, and
 - Each leaf has Full OSPF adjacencies with both spines.
 - Each spine has Full adjacencies with all three leaves.
 - From leaf1, the routes to the other leaves' networks have two equal-cost paths, one through each spine (ECMP).
+
+## Phase 3: Leaf-spine with eBGP
+Same physical topology as Phase 2, but OSPF is removed and each router runs BGP in its own autonomous system: spine1 is AS 65000, spine2 is AS 65001, and the leaves are AS 65100, 65101, and 65102. netlab builds an eBGP session on every spine-leaf link because the two ends are in different ASes.
+
+**Files:** `03-leaf-spine-ebgp/topology.yml` and `03-leaf-spine-ebgp/leaf-spine-bgp-verification.txt`
+
+**Results**
+- leaf1 has established eBGP sessions with both spines, and spine1 has established sessions with all three leaves.
+- From leaf1, the routes to the other leaves' loopbacks and networks are learned via BGP, each with two equal-cost paths, one through each spine.
+- BGP routes show an administrative distance of 20, compared with 110 for the OSPF routes in Phase 2.
 
 ## How to run
 1. Open a GitHub Codespace from the ipspace/netlab-examples repo
