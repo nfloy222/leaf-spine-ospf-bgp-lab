@@ -11,7 +11,7 @@ Network lab built with netlab, Containerlab, and FRRouting (FRR) to practice rou
 ## Phase 1: Two-node OSPF baseline
 Two FRR routers (r1, r2) connected by a point-to-point link, each with a stub network, running OSPF.
 
-**Files:** `topology.yml` and `ospf-verification.txt` in the repo root.
+**Files:** `01-two-node-ospf/topology.yml` and `01-two-node-ospf/ospf-verification.txt`
 
 **Result:** r1 formed a Full OSPF adjacency with r2 and learned r2's loopback and stub network via OSPF.
 
