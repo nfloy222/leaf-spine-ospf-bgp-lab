@@ -1,0 +1,11 @@
+---
+provider: clab
+defaults.device: frr
+module: [ bgp ]
+nodes:
+  spine1: { bgp: { as: 65000 } }
+  spine2: { bgp: { as: 65001 } }
+  leaf1: { bgp: { as: 65100 } }
+  leaf2: { bgp: { as: 65101 } }
+  leaf3: { bgp: { as: 65102 } }
+links: [ leaf1, leaf2, leaf3, spine1-leaf1, spine1-leaf2, spine1-leaf3, spine2-leaf1, spine2-leaf2, spine2-leaf3 ]
